@@ -1,21 +1,22 @@
-import { state } from "@angular/animations";
 import { createReducer, on } from "@ngrx/store";
-import { User } from "src/app/user/user.interface";
-import { getUsersSuccess } from "../actions/user.action";
+import { User } from "src/app/users/user.interface";
+import { getCurrentUserSuccess, getUsersSuccess } from "../actions/user.action";
 
 export interface UserState {
     users: User[];
-    currentUser: User | undefined;
+    currentUser: User;
 }
 
 const initialState: UserState = {
-    users: [],
-    currentUser: undefined
+    users: [{username: 'test'} as User],
+    currentUser: {} as User
 }
 
 export const userReducer = createReducer(
     initialState,
     on(getUsersSuccess, (state, { users }) => {
-        return { ...state, users}
-    })
+        console.log('updating users state')
+        return { ...state, users }
+    }),
+    on(getCurrentUserSuccess, (state, { currentUser }) => ({...state, currentUser}))
 )

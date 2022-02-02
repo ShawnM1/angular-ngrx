@@ -1,0 +1,14 @@
+<ng-container *ngIf="(user$ | async) as user">
+    <div>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>{{user.name}}</mat-card-title>
+                <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-actions>
+                <button mat-button>Okay</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</ng-container>
+

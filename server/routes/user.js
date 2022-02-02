@@ -10,4 +10,16 @@ router.get('/users', async (req, res, next) => {
     res.json(response.data);
 })
 
+router.get('/users/:id', async (req, res, next) => {
+    console.log('userId ' + req.params['id']);
+    try {
+        const response = await axios.get(`${domain}/users/${req.params['id']}`);
+        res.json(response.data);
+    } catch(e) {
+       throw e;
+    }
+  
+})
+
+
 module.exports = router;
